@@ -1,4 +1,4 @@
 interface:
   display_name: "Video Lecture Notes"
-  short_description: "Build rigorous Chinese notes from technical course videos"
-  default_prompt: "Use $video-lecture-notes to turn this technical course video and its materials into complete Chinese lecture notes."
+  short_description: "Build rigorous Obsidian notes and linked concepts from course videos"
+  default_prompt: "Use $video-lecture-notes to turn this technical course video into complete Chinese Obsidian lecture notes and linked concept cards. Put the video link directly below the title and do not include images unless I explicitly ask."

@@ -1,6 +1,6 @@
 ---
 name: video-lecture-notes
-description: Use when a user asks to turn technical course videos, recordings, subtitles, slides, PDFs, board work, or lecture images into complete Chinese lecture notes, especially when formulas, diagrams, experiments, timestamps, or Obsidian output must be preserved and a transcript-only summary would be inadequate.
+description: Use when a user asks to turn technical course videos, recordings, subtitles, slides, PDFs, board work, or lecture images into complete Chinese lecture notes, especially for Obsidian course notes with rigorous formulas, timestamps, and linked concept cards. Use this even when the user only supplies a playlist or says to organize a technical online course.
 ---
 
 # 理工科课程视频讲义
@@ -9,6 +9,10 @@ description: Use when a user asks to turn technical course videos, recordings, s
 
 把课程视频重建为能够脱离原视频独立学习的中文讲义。把语音、字幕、PPT、板书、
 公式、图表、实验画面和时间戳视为一组相互校验的证据，绝不只总结转录文本。
+
+把“制作证据”和“最终交付”分开：字幕、截图、关键帧和分析清单可以在临时工作区
+用于核对，但默认不放进 Obsidian。最终课程库保持轻量，每课只交付讲义和可复用的
+概念卡片。
 
 始终区分：
 
@@ -32,29 +36,24 @@ description: Use when a user asks to turn technical course videos, recordings, s
 默认创建：
 
 ```text
-video-lecture-notes-output/
-├── lecture-notes.md
-├── transcript/
-│   ├── transcript-raw.txt
-│   ├── transcript-cleaned.md
-│   ├── transcript.srt
-│   └── terminology-corrections.md
-├── frames/
-│   ├── keyframes/
-│   ├── formulas/
-│   ├── diagrams/
-│   └── boards/
-├── analysis/
-│   ├── chapter-map.md
-│   ├── concept-inventory.md
-│   ├── formula-inventory.md
-│   ├── visual-inventory.md
-│   └── uncertainty-log.md
-└── assets/
+课程文件夹/
+├── 00课程入口.md
+├── 01-课程章节/
+│   └── lecture-notes.md
+├── 02-课程章节/
+│   └── lecture-notes.md
+└── 概念卡片/
+    ├── 概念一.md
+    └── 概念二.md
 ```
 
-主要交付物始终是 `lecture-notes.md`。只有用户明确要求时才生成 PDF、DOCX、
-Typst、HTML、复习提纲或习题。
+单课任务可以省略课程入口。主要交付物始终是 `lecture-notes.md`，重复出现或值得复用
+的核心概念拆成独立卡片并用 Obsidian 双链连接。默认不在最终目录保存或嵌入图片、
+字幕、关键帧、音视频副本、分析清单或其他非 Markdown 文件；只有用户明确要求时才
+交付这些材料，或生成 PDF、DOCX、Typst、HTML、复习提纲和习题。
+
+媒体和分析证据放在 Obsidian 外的临时工作区。它们可以用于恢复公式、核对曲线和
+确认时间戳，但不能因为内部使用过就自动成为最终交付物。
 
 需要新建讲义时，复制并填写
 [assets/lecture-notes-template.md](assets/lecture-notes-template.md)，不要直接修改模板。
@@ -72,25 +71,29 @@ Typst、HTML、复习提纲或习题。
 
 - 删除无意义口头语和机械重复，但保留影响论证或推导的中间说明。
 - 结合 PPT、板书、教材和上下文校正专业术语、数字、单位、希腊字母和上下标。
-- 无法确认的词不要强行改写；写入 `uncertainty-log.md` 并在讲义中标记“待核对”。
+- 无法确认的词不要强行改写；在内部记录，并在最终讲义中标记“待核对”。
 
 ### 3. 分析画面与关键帧
 
-- 结合场景变化、固定间隔、字幕提示词、PPT 换页和板书增量提取关键帧。
+- 在临时工作区结合场景变化、固定间隔、字幕提示词、PPT 换页和板书增量提取关键帧。
 - 至少区分章节、公式、板书和图像四类关键帧。
 - 对逐行形成的板书保留形成过程，不要只截最后一帧。
 - 优先直接核对原图；OCR 只用于辅助读取，并须回到原图复核公式、数字和单位。
-- 仅当输入确实只有音频时才跳过画面分析，并在交付说明中声明限制。
+- 仅当输入确实只有音频时才跳过画面分析，并在讲义中声明限制。
+- 关键帧默认只作为内部证据，不复制到 Obsidian，也不嵌入最终讲义。
 
 ### 4. 建立内容清单
 
-在写讲义前完成：
+在写讲义前于内部工作区完成：
 
 - 章节清单：范围、问题、结论、前后关系；
 - 概念清单：中英文名、首次出现位置、前置关系；
 - 公式清单：来源画面、推导起点、变量、单位、假设和适用条件；
 - 图像清单：坐标、曲线、符号、装置和教师解释；
 - 不确定信息清单：音画冲突、模糊符号、疑似口误和材料分歧。
+
+清单用于保证内容完整，不作为默认最终文件。需要长期保留的信息应整理进讲义正文、
+概念卡片或“待核对”提示，而不是把分析目录交给用户。
 
 ### 5. 重建知识结构
 
@@ -131,7 +134,11 @@ Typst、HTML、复习提纲或习题。
 
 - 使用中文写作；核心术语首次出现时附英文。
 - 使用 Obsidian 兼容 Markdown 和 LaTeX，正文公式用 `$...$`，独立公式用 `$$...$$`。
-- 在主要知识点处写准确时间范围，在重要公式或画面处写单点时间戳和相对图片路径。
+- 不使用 `\(...\)` 作为行内公式定界符，避免在文件写入或转义过程中损坏反斜杠。
+- 讲义的 H1 标题后，第一个可见内容必须是本课原视频的可点击链接。
+- 在主要知识点处写准确时间范围，在重要公式或画面处写可点击的单点时间戳。
+- 不嵌入视频截图、封面或板书图片；用文字说明画面信息，并链接到对应视频时间点。
+- 把跨章节复用的核心概念写成独立 Markdown 卡片，在讲义中使用 Obsidian 双链。
 - 讲义正文使用连续解释，列表只用于清单、步骤、变量和对比。
 - 完成后阅读 [references/quality-checks.md](references/quality-checks.md) 并逐项核验。
 
@@ -142,8 +149,10 @@ Typst、HTML、复习提纲或习题。
 - 覆盖全部输入视频或明确列出无法处理的文件及原因；
 - 讲义脱离视频也能连续阅读；
 - 重要公式、变量、单位、假设和适用范围完整；
-- 关键图像和板书已解释而不只是插图；
+- 关键图像和板书已在正文中解释，但没有作为图片嵌入默认交付；
 - 时间戳、来源标记和待核对项可追溯；
-- `lecture-notes.md` 及其引用的本地文件均存在；
+- 视频链接位于每篇讲义标题下方，且指向对应课程视频；
+- 最终目录默认只包含讲义、课程入口和概念卡片 Markdown 文件；
+- 所有 Obsidian 双链均可解析，LaTeX 定界符匹配且无控制字符；
 - 最终回复简要列出处理范围、使用的材料、生成文件和仍待确认的内容。
 
