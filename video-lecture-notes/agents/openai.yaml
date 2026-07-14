@@ -1,0 +1,4 @@
+interface:
+  display_name: "Video Lecture Notes"
+  short_description: "Build rigorous Chinese notes from technical course videos"
+  default_prompt: "Use $video-lecture-notes to turn this technical course video and its materials into complete Chinese lecture notes."

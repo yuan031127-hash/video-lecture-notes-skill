@@ -16,12 +16,12 @@
 - Read: `C:/Users/17656/.codex/attachments/53dfc30e-ea2e-4b5c-81fa-0c48445f561c/pasted-text.txt`
 - Record: `docs/superpowers/specs/2026-07-14-video-lecture-notes-skill-design.md`
 
-- [ ] **Step 1: Check the first content line and YAML delimiters**
+- [x] **Step 1: Check the first content line and YAML delimiters**
 
 Run a UTF-8-safe read that asserts the first line is `---` and the closing
 frontmatter delimiter is exactly `---`.
 
-- [ ] **Step 2: Verify the source fails for the expected reasons**
+- [x] **Step 2: Verify the source fails for the expected reasons**
 
 Expected: FAIL because prose appears before the YAML frontmatter and the closing
 delimiter is `-------------`.
@@ -35,19 +35,19 @@ delimiter is `-------------`.
 - Create: `video-lecture-notes/references/quality-checks.md`
 - Create: `video-lecture-notes/assets/lecture-notes-template.md`
 
-- [ ] **Step 1: Run the official initializer**
+- [x] **Step 1: Run the official initializer**
 
 Run `init_skill.py video-lecture-notes` with `references,assets` resources and
 explicit interface values for the display name, short description, and default
 prompt.
 
-- [ ] **Step 2: Replace the generated primary Skill**
+- [x] **Step 2: Replace the generated primary Skill**
 
 Write valid two-field YAML frontmatter followed by the core inspection,
 transcription, visual-analysis, content reconstruction, uncertainty, and
 delivery workflow. Link every optional detail file directly from `SKILL.md`.
 
-- [ ] **Step 3: Add detailed rules and template**
+- [x] **Step 3: Add detailed rules and template**
 
 Move the stable domain-specific rules and full lecture-note skeleton into the
 two reference files and one template file without duplicating the core flow.
@@ -58,12 +58,12 @@ two reference files and one template file without duplicating the core flow.
 - Create: `README.md`
 - Create: `LICENSE`
 
-- [ ] **Step 1: Write repository documentation**
+- [x] **Step 1: Write repository documentation**
 
 Document the Skill's purpose, supported inputs, installation command, example
 triggers, output structure, current limitations, and license.
 
-- [ ] **Step 2: Add the MIT license**
+- [x] **Step 2: Add the MIT license**
 
 Use year `2026` and copyright holder `yuan031127-hash`.
 
@@ -73,22 +73,22 @@ Use year `2026` and copyright holder `yuan031127-hash`.
 - Verify: `video-lecture-notes/**`
 - Create: `C:/Users/17656/.codex/skills/video-lecture-notes/**`
 
-- [ ] **Step 1: Run official validation**
+- [x] **Step 1: Run official validation**
 
 Run `quick_validate.py` against `video-lecture-notes` and expect `Skill is valid!`.
 
-- [ ] **Step 2: Run content-integrity checks**
+- [x] **Step 2: Run content-integrity checks**
 
 Verify all linked reference paths exist, no placeholders remain, metadata uses
 the same Skill name, and the primary file remains below 500 lines.
 
-- [ ] **Step 3: Install the Skill**
+- [x] **Step 3: Install the Skill**
 
 Copy the verified installable directory to the personal Codex Skills directory,
 replacing only an existing directory with the exact same Skill name after it has
 been inventoried.
 
-- [ ] **Step 4: Compare source and installed trees**
+- [x] **Step 4: Compare source and installed trees**
 
 Compute recursive file hashes and expect identical relative paths and hashes.
 
@@ -115,4 +115,3 @@ push the default branch.
 
 Query the repository visibility, URL, default branch, and remote commit SHA.
 Expected: visibility `PUBLIC` and remote SHA equal to the local `HEAD`.
-
