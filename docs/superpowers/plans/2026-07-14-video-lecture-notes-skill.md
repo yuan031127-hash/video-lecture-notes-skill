@@ -97,21 +97,21 @@ Compute recursive file hashes and expect identical relative paths and hashes.
 **Files:**
 - Stage: the isolated repository only
 
-- [ ] **Step 1: Inspect repository scope**
+- [x] **Step 1: Inspect repository scope**
 
 Run `git status -sb` inside the isolated repository and confirm no path outside
 that repository can be staged.
 
-- [ ] **Step 2: Commit the verified package**
+- [x] **Step 2: Commit the verified package**
 
 Commit with message `feat: publish video lecture notes skill`.
 
-- [ ] **Step 3: Create and push the public repository**
+- [x] **Step 3: Create and push the public repository**
 
 Create `yuan031127-hash/video-lecture-notes-skill` as public, set `origin`, and
 push the default branch.
 
-- [ ] **Step 4: Verify GitHub state**
+- [x] **Step 4: Verify GitHub state**
 
 Query the repository visibility, URL, default branch, and remote commit SHA.
 Expected: visibility `PUBLIC` and remote SHA equal to the local `HEAD`.
